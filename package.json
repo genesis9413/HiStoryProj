@@ -1,0 +1,19 @@
+{
+  "name": "hi-story",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "lodash": "^4.17.4",
+    "morgan": "^1.8.2",
+    "multer": "^1.3.0",
+    "mysql": "latest",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "pbkdf2-password": "latest",
+    "serve-favicon": "^2.4.3",
+    "thumbnail": "^0.1.9"
+  }
+}

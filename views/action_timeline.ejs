@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Action Timeline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.webui-popover/2.1.15/jquery.webui-popover.min.css">
+</head>
+
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+
+    <div class="nav">
+        <div class="logo"><a href="/action" class="f-logo">HiStory</a></div>
+        <ul class="menu">
+            <li><a href="/action" class="f-menu active">Action</a></li>
+            <li><a href="history.ejs" class="f-menu">History</a></li>
+            <li><a href="explore.ejs" class="f-menu">Explore</a></li>
+            <li><a href="setting.ejs" class="f-menu">Setting</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="left">
+
+            <div class="left-top">
+                <div class="view-mode">
+                    <div class="overview"><a href="/action" class="f-basic ">Overview</a></div>
+                    <div class="timeline"><a href="/action/timeline" class="f-basic active">Timeline</a></div>
+                </div>
+                <a href="#" class="f-basic arg">ARG</a>
+                <div class="webui-popover-content">
+                    <div class="arg-popover">
+                        <button id="arg01">이름 내림</button>
+                        <button id="arg02">이름 오름</button>
+                        <button id="arg03">날짜 오름</button>
+                        <button id="arg04">날짜 내림</button>
+                        <button id="arg05">수정 내림</button>
+                        <button id="arg06">수정 오름</button>
+                    </div>
+                </div>
+            </div>
+
+            <% for(var i=0 ; i<tldata.length ; i++){%>
+            <!--데이터가 없다면-->
+            <% if(tldata === undefined){%>
+            <div>데이터 없음 메세지</div>
+            <%break;%>
+            <!--처음엔 무조건 출력-->
+            <%}else if(i===0 ? true : tldata[i-1].Page_Date.getDate() !== tldata[i].Page_Date.getDate()){%>
+            <div class="page-list"><%}%>
+                <div class='story-memo-no' style='display: none'><%=tldata[i].Story_No%></div>
+                <div class="page-no" style="display: none"><%=tldata[i].Page_No%></div>
+                <% if(i===0 ? true : tldata[i-1].Page_Date.getDate() !== tldata[i].Page_Date.getDate()){%>
+                <div class="date f-subSmall"><%=tldata[i].Page_Date%></div><%}%>
+                <div class="page">
+                    <a href="/action/story/<%=tldata[i].Story_No%>" class="story-title f-empha"><%=tldata[i].Story_Title%></a>
+                    <%-tldata[i].Page_Content%>
+                </div>
+            <% if(tldata[i+1]==null ? true : tldata[i+1].Page_Date.getDate() !== tldata[i].Page_Date.getDate()){%>
+            </div><%}%>
+            <%}%>
+        </div>
+
+        <div class="right">
+            <div class="aside">
+                <div class="infor">
+                    <div class="book-name f-subSmall">Bookname</div>
+                    <div class="story-name f-empha">Storyname</div>
+                    <div class="date f-subSmall">2017.00.00</div>
+                    <hr class="hr-infor">
+                    <div class="score">
+                        <div class="score-num citation f-subSmall">Citation
+                            <div class="citation-num f-empha">6</div>
+                        </div>
+                        <div class="score-num follow f-subSmall">Follow
+                            <div class="follow-num f-empha">8</div>
+                        </div>
+                        <div class="score-num view f-subSmall">View
+                            <div class="view-num f-empha">670</div>
+                        </div>
+                    </div>
+                    <hr class="hr-infor">
+                    <div class="story-setting">
+                        <button id="story-enter"><a href="/story.html" class="f-basic">Enter</a></button>
+                        <button id="done-btn" class="f-basic">Done</button>
+                        <button id="delete-btn" class="f-basic">Delete</button>
+                    </div>
+                </div>
+                <div class="aside-btn">
+                    <button id="new-story-btn" class="f-basic">NEW STORY</button>
+                </div>
+            </div>
+            <div class="footer f-subSmall">Company Infor</div>
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.webui-popover/2.1.15/jquery.webui-popover.min.js"></script>
+    <script src="/js/popover.js"></script>
+    <script src="/js/aside.js"></script>
+
+</body>
+
+</html>
